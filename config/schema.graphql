@@ -1,7 +1,5 @@
-type Article {
-  description: String!
+interface Node {
   id: ID!
-  title: String!
 }
 
 type PageInfo {
@@ -11,8 +9,16 @@ type PageInfo {
   startCursor: String
 }
 
+type Post implements Node {
+  description: String!
+  id: ID!
+  title: String!
+}
+
 type Query {
   hello(name: String): String!
+  node(id: ID!): Node
+  nodes(ids: [ID!]!): [Node]!
   posts(after: String, before: String, first: Int, last: Int): QueryPostsConnection!
 }
 
@@ -23,5 +29,5 @@ type QueryPostsConnection {
 
 type QueryPostsConnectionEdge {
   cursor: String!
-  node: Article!
+  node: Post!
 }
