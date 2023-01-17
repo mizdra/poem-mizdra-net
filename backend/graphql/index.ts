@@ -23,7 +23,7 @@ const builder = new SchemaBuilder<{
   },
 });
 
-builder.prismaNode('Article', {
+builder.prismaNode('Post', {
   id: { field: 'id' },
   fields: (t) => ({
     title: t.exposeString('title'),
@@ -41,9 +41,9 @@ builder.queryType({
     }),
     posts: t.prismaConnection(
       {
-        type: 'Article',
+        type: 'Post',
         cursor: 'id',
-        resolve: (query, parent, args, context, info) => prisma.article.findMany({ ...query }),
+        resolve: (query, parent, args, context, info) => prisma.post.findMany({ ...query }),
       },
       {}, // optional options for the Connection type
       {}, // optional options for the Edge type),
