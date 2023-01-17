@@ -1,0 +1,32 @@
+{
+  "editor.tabSize": 2,
+
+  // prettier
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "editor.formatOnSave": true,
+
+  // prisma
+  "[prisma]": {
+    "editor.defaultFormatter": "Prisma.prisma"
+  },
+
+  "editor.codeActionsOnSave": {
+    // vscode-eslint
+    "source.fixAll.eslint": true,
+    // vscode-stylelint
+    "source.fixAll.stylelint": true
+  },
+  "files.exclude": {
+    // happy-css-modules が生成する型定義を参照したいことはまずない上に、邪魔なので隠してしまう
+    "**/*.module.css.d.ts": true,
+    "**/*.module.css.d.ts.map": true
+  },
+
+  // Next.js
+  "typescript.tsdk": "node_modules/.pnpm/typescript@4.9.4/node_modules/typescript/lib",
+  "typescript.enablePromptUseWorkspaceTsdk": true,
+
+  // vscode-stylelint
+  // VSCode 組み込みの linter を無効化
+  "css.validate": false
+}

@@ -1,0 +1,27 @@
+type Article {
+  description: String!
+  id: ID!
+  title: String!
+}
+
+type PageInfo {
+  endCursor: String
+  hasNextPage: Boolean!
+  hasPreviousPage: Boolean!
+  startCursor: String
+}
+
+type Query {
+  hello(name: String): String!
+  posts(after: String, before: String, first: Int, last: Int): QueryPostsConnection!
+}
+
+type QueryPostsConnection {
+  edges: [QueryPostsConnectionEdge]!
+  pageInfo: PageInfo!
+}
+
+type QueryPostsConnectionEdge {
+  cursor: String!
+  node: Article!
+}

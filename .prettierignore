@@ -1,0 +1,12 @@
+# pnpm
+pnpm-lock.yaml
+
+# Next.js
+/.next
+
+# happy-css-modules
+*.module.css.d.ts
+
+# User
+/dist
+/config/schema.graphql

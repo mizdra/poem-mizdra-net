@@ -1,0 +1,5 @@
+# happy-css-modules
+*.module.css.d.ts
+
+# Next.js
+/.next

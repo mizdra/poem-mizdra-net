@@ -1,0 +1,36 @@
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: pnpm/action-setup@v2
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 16
+          cache: 'pnpm'
+      - run: pnpm install
+      - run: pnpm gen
+      - run: pnpm lint
+      # - run: pnpm test
+
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: pnpm/action-setup@v2
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 16
+          cache: 'pnpm'
+      - run: pnpm install
+      - run: pnpm build
