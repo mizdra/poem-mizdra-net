@@ -1,7 +1,11 @@
-type Article {
+type Article implements Node {
   description: String!
   id: ID!
   title: String!
+}
+
+interface Node {
+  id: ID!
 }
 
 type PageInfo {
@@ -13,6 +17,8 @@ type PageInfo {
 
 type Query {
   hello(name: String): String!
+  node(id: ID!): Node
+  nodes(ids: [ID!]!): [Node]!
   posts(after: String, before: String, first: Int, last: Int): QueryPostsConnection!
 }
 
