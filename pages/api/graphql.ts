@@ -1,6 +1,7 @@
 import { writeFileSync } from 'node:fs';
 import { printSchema, lexicographicSortSchema } from 'graphql';
-import { schema, yoga } from '../../backend/graphql/index';
+import { schema } from '../../backend/graphql/schema';
+import { yoga } from '../../backend/graphql/server';
 
 // graphql-yoga + pothos はコードファーストで GraphQL スキーマを定義するが、
 // そのままだとそのスキーマはローカルに書き出されない。
