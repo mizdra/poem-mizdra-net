@@ -1,8 +1,6 @@
 import { writeFileSync } from 'node:fs';
-import dedent from 'dedent';
 import { printSchema, lexicographicSortSchema } from 'graphql';
-import { createYoga } from 'graphql-yoga';
-import { schema } from '../../backend/graphql/index';
+import { schema, yoga } from '../../backend/graphql/index';
 
 // graphql-yoga + pothos はコードファーストで GraphQL スキーマを定義するが、
 // そのままだとそのスキーマはローカルに書き出されない。
@@ -14,16 +12,4 @@ if (process.env.NODE_ENV === 'development') {
   writeFileSync('./config/schema.graphql', schemaAsString);
 }
 
-export default createYoga({
-  schema,
-  graphqlEndpoint: '/api/graphql',
-  graphiql:
-    process.env.NODE_ENV === 'development'
-      ? {
-          defaultQuery: dedent`
-            query {
-              hello(name: "mizdra")
-            }`,
-        }
-      : false,
-});
+export default yoga;
