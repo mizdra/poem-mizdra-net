@@ -17,6 +17,7 @@
     "lint:next": "next lint -d . -f stylish",
     "lint:stylelint": "stylelint '**/*.css'",
     "lint:prettier": "prettier --check .",
+    "lint:tsc": "tsc --noEmit",
     "test": "jest"
   },
   "packageManager": "pnpm@7.24.2",
