@@ -3,7 +3,7 @@ import SchemaBuilder from '@pothos/core';
 import PrismaPlugin from '@pothos/plugin-prisma';
 import PrismaTypes from '@pothos/plugin-prisma/generated';
 import RelayPlugin from '@pothos/plugin-relay';
-import { prisma } from '../prisma';
+import { prisma } from '../prisma/index.ts';
 
 export const builder = new SchemaBuilder<{
   PrismaTypes: PrismaTypes;
