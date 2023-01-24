@@ -1,6 +1,7 @@
 import SchemaBuilder from '@pothos/core';
 // eslint-disable-next-line import/no-named-as-default
 import PrismaPlugin from '@pothos/plugin-prisma';
+// @ts-expect-error
 import PrismaTypes from '@pothos/plugin-prisma/generated';
 import RelayPlugin from '@pothos/plugin-relay';
 import { prisma } from '../prisma/index.ts';
