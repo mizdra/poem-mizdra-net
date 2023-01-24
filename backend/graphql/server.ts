@@ -1,6 +1,6 @@
 import dedent from 'dedent';
 import { createYoga } from 'graphql-yoga';
-import { schema } from './schema';
+import { schema } from './schema/index.ts';
 
 export const yoga = createYoga({
   schema,

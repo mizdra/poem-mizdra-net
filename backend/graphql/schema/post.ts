@@ -1,5 +1,5 @@
-import { prisma } from '../../prisma';
-import { builder } from '../builder';
+import { prisma } from '../../prisma/index.ts';
+import { builder } from '../builder.ts';
 
 builder.prismaNode('Post', {
   id: { field: 'id' },

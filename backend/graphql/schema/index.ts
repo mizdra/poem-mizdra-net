@@ -1,6 +1,6 @@
-import './post';
-import './hello';
-import { builder } from '../builder';
+import './post.ts';
+import './hello.ts';
+import { builder } from '../builder.ts';
 
 builder.queryType();
 // builder.mutationType();
