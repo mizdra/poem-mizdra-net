@@ -1,0 +1,24 @@
+diff --git a/dist/esm/lib/typescript/writeConfigurationDefaults.js b/dist/esm/lib/typescript/writeConfigurationDefaults.js
+index 203c1a53dda99e9457c655ce9b5930c4a2e1606c..65dfcddf930492254f26ed5e01f1b6339866c8a9 100644
+--- a/dist/esm/lib/typescript/writeConfigurationDefaults.js
++++ b/dist/esm/lib/typescript/writeConfigurationDefaults.js
+@@ -61,6 +61,7 @@ function getDesiredCompilerOptions(ts) {
+                 ts.ModuleResolutionKind.NodeJs,
+                 // only newer TypeScript versions have this field, it
+                 // will be filtered for new versions of TypeScript
++                ts.ModuleResolutionKind.Bundler,
+                 (ts.ModuleResolutionKind).Node12,
+                 ts.ModuleResolutionKind.Node16,
+                 ts.ModuleResolutionKind.NodeNext, 
+diff --git a/dist/lib/typescript/writeConfigurationDefaults.js b/dist/lib/typescript/writeConfigurationDefaults.js
+index f98bc0f025426640b88203bd21ad7f895652bec4..3b47599dd277a3e5fe30c5f5bc8f418dd1f56564 100644
+--- a/dist/lib/typescript/writeConfigurationDefaults.js
++++ b/dist/lib/typescript/writeConfigurationDefaults.js
+@@ -111,6 +111,7 @@ function getDesiredCompilerOptions(ts) {
+                 ts.ModuleResolutionKind.NodeJs,
+                 // only newer TypeScript versions have this field, it
+                 // will be filtered for new versions of TypeScript
++                ts.ModuleResolutionKind.Bundler,
+                 (ts.ModuleResolutionKind).Node12,
+                 ts.ModuleResolutionKind.Node16,
+                 ts.ModuleResolutionKind.NodeNext, 
