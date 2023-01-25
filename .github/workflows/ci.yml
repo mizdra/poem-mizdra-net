@@ -21,6 +21,11 @@ jobs:
       - run: pnpm install
       - run: pnpm gen
       - run: pnpm lint
+
+      - run: ./script/generate-graphql-schema.ts
+      - name: commit されていない GraphQL スキーマの差分がないか確認
+        run: git diff --exit-code
+
       # - run: pnpm test
 
   build:

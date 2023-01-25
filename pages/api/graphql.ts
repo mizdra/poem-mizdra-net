@@ -1,6 +1,4 @@
-import { writeFileSync } from 'node:fs';
-import { printSchema, lexicographicSortSchema } from 'graphql';
-import { schema } from '../../backend/graphql/schema';
+import { writeSchemaFile } from '../../backend/graphql/schema';
 import { yoga } from '../../backend/graphql/server';
 
 // graphql-yoga + pothos はコードファーストで GraphQL スキーマを定義するが、
@@ -9,8 +7,7 @@ import { yoga } from '../../backend/graphql/server';
 // 我々のほうでローカルにスキーマを書き出す。
 // ref: https://pothos-graphql.dev/docs/guide/printing-schemas#printing-schema
 if (process.env.NODE_ENV === 'development') {
-  const schemaAsString = printSchema(lexicographicSortSchema(schema));
-  writeFileSync('./config/schema.graphql', schemaAsString);
+  writeSchemaFile();
 }
 
 export default yoga;
