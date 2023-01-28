@@ -9,6 +9,11 @@ generator pothos {
   provider = "prisma-pothos-types"
 }
 
+generator fabbrica {
+  provider = "prisma-fabbrica"
+  output   = "../__generated__/fabbrica"
+}
+
 datasource db {
   provider = "mysql"
   url      = env("DATABASE_URL")
