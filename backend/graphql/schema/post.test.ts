@@ -5,7 +5,36 @@ import { truncateAll } from '../../test/prisma';
 
 export const PostFactory = definePostFactory();
 
-// describe('type', () => {});
+test('type', async () => {
+  const post = await PostFactory.create();
+  const res = await fetchQuery({
+    query: /* GraphQL */ `
+      query ($id: ID!) {
+        node(id: $id) {
+          ... on Post {
+            id
+            title
+            description
+          }
+        }
+      }
+    `,
+    variables: {
+      id: encodeGlobalID('Post', post.id),
+    },
+  });
+
+  const json = await res.json();
+  expect(json).toStrictEqual({
+    data: {
+      node: expect.objectContaining({
+        id: encodeGlobalID('Post', post.id),
+        title: post.title,
+        description: post.description,
+      }),
+    },
+  });
+});
 
 describe('posts query', () => {
   test('全ての投稿を取得できる', async () => {
@@ -16,7 +45,7 @@ describe('posts query', () => {
 
     const res = await fetchQuery({
       query: /* GraphQL */ `
-        {
+        query {
           posts {
             edges {
               node {
