@@ -9,45 +9,46 @@ permissions:
   contents: read
 
 jobs:
-  test:
+  lint:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
       - uses: pnpm/action-setup@v2
       - uses: actions/setup-node@v3
         with:
-          node-version: 16
+          node-version: 18
           cache: 'pnpm'
       - run: pnpm install
       - run: pnpm gen
       - run: pnpm lint
-
-      - run: ./script/generate-graphql-schema.ts
       - name: commit されていない GraphQL スキーマの差分がないか確認
-        run: git diff --exit-code
-
-      #  mysql を起動して、クエリを受け付けるまで待機する
-      # TODO: 本当は docker-compose.yml で定義されている mysql の image を使いたい
-      # ref: https://zenn.dev/snowcait/articles/0cc4a464610e61
-      - name: Start up mysql container
         run: |
-          docker run \
-            -d \
-            --name mysql \
-            --health-cmd "mysqladmin ping" \
-            --health-interval 10s \
-            --health-retries 5 \
-            --health-timeout 5s \
-            -p 3306:3306 \
-            -e MYSQL_ROOT_PASSWORD=password \
-            mysql:latest
-      - name: Wait for starting mysql container
-        run: |
-          set -x
-          until [ "$(docker inspect --format='{{.State.Health.Status}}' mysql)" = 'healthy' ]; do
-            sleep 1s
-          done
+          ./script/generate-graphql-schema.ts
+          git diff --exit-code
 
+  test:
+    runs-on: ubuntu-latest
+    services:
+      mysql:
+        image: mysql:8.0.31
+        env:
+          MYSQL_ROOT_PASSWORD: password
+        options: >-
+          --health-cmd "mysqladmin ping"
+          --health-interval 10s
+          --health-retries 5
+          --health-timeout 5s
+        ports:
+          - 3306:3306
+    steps:
+      - uses: actions/checkout@v3
+      - uses: pnpm/action-setup@v2
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 18
+          cache: 'pnpm'
+      - run: pnpm install
+      - run: pnpm gen
       - run: pnpm test
 
   build:
@@ -57,7 +58,7 @@ jobs:
       - uses: pnpm/action-setup@v2
       - uses: actions/setup-node@v3
         with:
-          node-version: 16
+          node-version: 18
           cache: 'pnpm'
       - run: pnpm install
       - run: pnpm gen
