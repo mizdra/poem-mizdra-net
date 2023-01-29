@@ -4,5 +4,5 @@
 # Next.js
 /.next
 
-# @quramy/prisma-fabbrica
+# @quramy/prisma-fabbrica, graphql-code-generator
 /__generated__

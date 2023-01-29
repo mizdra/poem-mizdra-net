@@ -1,6 +1,13 @@
 import Image from 'next/image';
+import { graphql } from '../__generated__/graphql/gql';
 import wave from '../public/wave.png';
 import styles from './page.module.css';
+
+const query = graphql(`
+  query HomeQuery {
+    hello
+  }
+`);
 
 export default function Home() {
   return (

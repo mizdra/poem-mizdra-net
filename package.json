@@ -13,6 +13,7 @@
     "gen": "run-s -c gen:*",
     "gen:hcm": "hcm 'app/**/*.module.css'",
     "gen:prisma": "prisma generate",
+    "gen:graphql": "graphql-codegen",
     "lint": "run-s -c lint:*",
     "lint:next": "next lint -d . -f stylish",
     "lint:stylelint": "stylelint '**/*.css'",
