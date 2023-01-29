@@ -11,6 +11,18 @@ permissions:
 jobs:
   test:
     runs-on: ubuntu-latest
+    services:
+      mysql:
+        image: mysql:latest
+        env:
+          MYSQL_ROOT_PASSWORD: password
+        options: >-
+          --health-cmd "mysqladmin ping"
+          --health-interval 10s
+          --health-retries 5
+          --health-timeout 5s
+        ports:
+          - 3306:3306
     steps:
       - uses: actions/checkout@v3
       - uses: pnpm/action-setup@v2
@@ -26,21 +38,6 @@ jobs:
       - name: commit されていない GraphQL スキーマの差分がないか確認
         run: git diff --exit-code
 
-      #  mysql を起動して、クエリを受け付けるまで待機する
-      # TODO: 本当は docker-compose.yml で定義されている mysql の image を使いたい
-      # ref: https://zenn.dev/snowcait/articles/0cc4a464610e61
-      - name: Start up mysql container
-        run: |
-          docker run \
-            -d \
-            --name mysql \
-            --health-cmd "mysqladmin ping" \
-            --health-interval 10s \
-            --health-retries 5 \
-            --health-timeout 5s \
-            -p 3306:3306 \
-            -e MYSQL_ROOT_PASSWORD=password \
-            mysql:latest
       - name: Wait for starting mysql container
         run: |
           set -x
