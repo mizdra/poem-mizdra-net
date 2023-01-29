@@ -4,6 +4,7 @@ specifiers:
   '@eslint/eslintrc': ^1.4.1
   '@graphql-codegen/cli': ^2.16.4
   '@graphql-codegen/client-preset': ^1.2.6
+  '@graphql-typed-document-node/core': ^3.1.1
   '@jest/types': ^29.4.0
   '@mizdra/eslint-config-mizdra': 1.2.0
   '@mizdra/prettier-config-mizdra': ^1.0.0
@@ -69,6 +70,7 @@ devDependencies:
   '@eslint/eslintrc': 1.4.1
   '@graphql-codegen/cli': 2.16.4_ypnw7qtddur2thavhnwioh46ha
   '@graphql-codegen/client-preset': 1.2.6_graphql@16.6.0
+  '@graphql-typed-document-node/core': 3.1.1_graphql@16.6.0
   '@jest/types': 29.4.0
   '@mizdra/eslint-config-mizdra': 1.2.0_c7xureoh7imezlfbl2o3ihz7ke
   '@mizdra/prettier-config-mizdra': 1.0.0_prettier@2.8.2
