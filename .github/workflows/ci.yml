@@ -38,13 +38,6 @@ jobs:
       - name: commit されていない GraphQL スキーマの差分がないか確認
         run: git diff --exit-code
 
-      - name: Wait for starting mysql container
-        run: |
-          set -x
-          until [ "$(docker inspect --format='{{.State.Health.Status}}' mysql)" = 'healthy' ]; do
-            sleep 1s
-          done
-
       - run: pnpm test
 
   build:
