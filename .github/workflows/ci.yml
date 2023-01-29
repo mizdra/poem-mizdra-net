@@ -9,6 +9,23 @@ permissions:
   contents: read
 
 jobs:
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: pnpm/action-setup@v2
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 16
+          cache: 'pnpm'
+      - run: pnpm install
+      - run: pnpm gen
+      - run: pnpm lint
+      - name: commit されていない GraphQL スキーマの差分がないか確認
+        run: |
+          ./script/generate-graphql-schema.ts
+          git diff --exit-code
+
   test:
     runs-on: ubuntu-latest
     services:
@@ -32,12 +49,6 @@ jobs:
           cache: 'pnpm'
       - run: pnpm install
       - run: pnpm gen
-      - run: pnpm lint
-
-      - run: ./script/generate-graphql-schema.ts
-      - name: commit されていない GraphQL スキーマの差分がないか確認
-        run: git diff --exit-code
-
       - run: pnpm test
 
   build:
