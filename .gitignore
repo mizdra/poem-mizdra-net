@@ -39,5 +39,8 @@ next-env.d.ts
 *.module.css.d.ts
 *.module.css.d.ts.map
 
+# @quramy/prisma-fabbrica, graphql-code-generator
+/__generated__
+
 # User
 /.env

@@ -1,3 +1,5 @@
+// @ts-check
+
 import nextJest from 'next/jest.js';
 
 const createJestConfig = nextJest({
@@ -5,7 +7,9 @@ const createJestConfig = nextJest({
 });
 
 /** @type {import('@jest/types').Config.InitialOptions} */
-const customJestConfig = {};
+const customJestConfig = {
+  setupFilesAfterEnv: ['<rootDir>/jest.setup.ts'],
+};
 
 // eslint-disable-next-line import/no-default-export
 export default createJestConfig(customJestConfig);

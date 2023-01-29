@@ -7,6 +7,9 @@ pnpm-lock.yaml
 # happy-css-modules
 *.module.css.d.ts
 
+# @quramy/prisma-fabbrica, graphql-code-generator
+/__generated__
+
 # User
 /dist
 /config/schema.graphql
