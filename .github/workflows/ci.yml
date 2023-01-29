@@ -26,7 +26,7 @@ jobs:
       - name: commit されていない GraphQL スキーマの差分がないか確認
         run: git diff --exit-code
 
-      # - run: pnpm test
+      - run: pnpm test
 
   build:
     runs-on: ubuntu-latest
