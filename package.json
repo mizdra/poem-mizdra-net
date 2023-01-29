@@ -10,6 +10,7 @@
     "dev": "run-p dev:*",
     "dev:next": "next dev",
     "dev:hcm": "pnpm gen:hcm --watch",
+    "dev:graphql": "pnpm gen:graphql --watch",
     "gen": "run-s -c gen:*",
     "gen:hcm": "hcm 'app/**/*.module.css'",
     "gen:prisma": "prisma generate",
