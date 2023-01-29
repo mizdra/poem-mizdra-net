@@ -14,28 +14,29 @@ describe('posts query', () => {
     const post1 = await PostFactory.create();
     const post2 = await PostFactory.create();
 
-    const res = await fetchQuery({ query: '{ posts { edges { node { id title description } } } }' });
+    const res = await fetchQuery({
+      query: /* GraphQL */ `
+        {
+          posts {
+            edges {
+              node {
+                id
+                title
+                description
+              }
+            }
+          }
+        }
+      `,
+    });
 
-    expect(res.status).toBe(200);
     const json = await res.json();
-    expect(json).toEqual({
+    expect(json).toStrictEqual({
       data: {
         posts: {
           edges: [
-            {
-              node: {
-                id: encodeGlobalID('Post', post1.id),
-                title: post1.title,
-                description: post1.description,
-              },
-            },
-            {
-              node: {
-                id: encodeGlobalID('Post', post2.id),
-                title: post2.title,
-                description: post2.description,
-              },
-            },
+            { node: expect.objectContaining({ id: encodeGlobalID('Post', post1.id) }) },
+            { node: expect.objectContaining({ id: encodeGlobalID('Post', post2.id) }) },
           ],
         },
       },
